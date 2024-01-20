@@ -112,9 +112,12 @@ class _AnimationScreen extends State {
       msgs.add(Message(content: response, isMe: false));
       myMessage = null;
       isSpeaking = true;
-      _bearAnimation.startTalkingAnimation();
     });
-
+    Future.delayed(const Duration(milliseconds: 1000), (){
+      setState(() {
+        _bearAnimation.startTalkingAnimation();
+      });
+    });
     await tts.speak(response);
 
     await startListening();
