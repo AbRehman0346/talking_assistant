@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:usegpt/gpt/gptMessage.dart';
-
 import '../constants.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -16,7 +14,7 @@ class GPT {
     http.Response response = await http.post(
       Uri.parse(Constants.CHATGPTAPI),
       headers: {
-        "Authorization": "Bearer ${key!}",
+        "Authorization": "Bearer $key",
         "Content-Type": "application/json",
       },
       body: jsonEncode(gptmsg.constructUserGPTMessage(value)),
