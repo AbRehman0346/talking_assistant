@@ -42,6 +42,7 @@ dependencies:
   connectivity_plus: ^5.0.2
   rive: ^0.12.4
   flutter_dotenv: ^5.1.0
+  o3d: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/animations/
+    - assets/images/
     - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see

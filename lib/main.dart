@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:usegpt/home.dart';
+import 'package:usegpt/o3d_animation.dart';
 import 'package:usegpt/speech_to_text_continuous/speech_to_text_continuous.dart';
 import 'package:usegpt/test.dart';
 import 'package:usegpt/testScreen.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: AnimationScreen(),
+      home: const O3DTalkingAnimation(),
     );
   }
 }
