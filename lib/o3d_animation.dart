@@ -1,9 +1,11 @@
+import 'dart:developer';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:o3d/o3d.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:usegpt/general_functions.dart';
 import 'package:usegpt/speech_to_text_continuous/speech_to_text_continuous.dart';
 import 'gpt/gpt.dart';
 import 'models/message.dart';
@@ -27,6 +29,7 @@ class _O3DTalkingAnimationState extends State<O3DTalkingAnimation> {
   bool internetStatus = true;
   Color iconColor = Colors.white;
   String speakingText = "";
+  GeneralFunctions _generalFunctions = GeneralFunctions();
 
   @override
   void initState() {
@@ -153,12 +156,16 @@ class _O3DTalkingAnimationState extends State<O3DTalkingAnimation> {
 
     tts.setProgressHandler((text, start, end, word) {
       setState(() {
-        start = start < 2 ? 0 : start - 2;
-        end = (end + 3) < (text.length - 1) ? end + 3 : text.length - 1;
-        speakingText = text.substring(start, end);
+        if (speakingText.length > 50){
+          speakingText = "";
+        }
+        speakingText += "$word ";
+
       });
     });
     await tts.speak(response);
+
+    speakingText = "";
 
     await startListening();
     setState(() {

@@ -6,6 +6,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class GPT {
   Future<String> askGPT(String value) async {
+    value += "\n\nThis is the prompt from user. First answer him then ask any relevant question if necessary.";
+
     String? key = dotenv.env['GPT_SECRET_KEY'];
     if (key == null){
       return "Sorry! We couldn't get response. we could find gpt key.";

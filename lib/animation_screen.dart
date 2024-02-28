@@ -6,6 +6,7 @@ import 'package:usegpt/speech_to_text_continuous/speech_to_text_continuous.dart'
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'animations/bear_animation.dart';
+import 'constants.dart';
 import 'models/message.dart';
 
 class AnimationScreen extends StatefulWidget {
@@ -34,7 +35,6 @@ class _AnimationScreen extends State {
     isSpeaking = false;
     Connectivity().onConnectivityChanged.listen(
           (ConnectivityResult result) async {
-        print("Setting Internet State");
         setState(() {});
       },
     );
@@ -45,7 +45,11 @@ class _AnimationScreen extends State {
     Color pageBackgroundColor = Colors.grey.shade300;
     return Scaffold(
       backgroundColor: pageBackgroundColor,
-      body: _bearAnimation.showAnimation(),
+      body: Stack(
+        children: [
+          _bearAnimation.showAnimation()
+        ],
+      ),
       floatingActionButton: FutureBuilder(
           future: InternetConnectionChecker().hasConnection,
           builder: (BuildContext context, AsyncSnapshot snap) {
